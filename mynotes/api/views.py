@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
+# if method == 'GET' run this
 # api/urls.py -> api/views.py -> getRoutes()
+@api_view(['GET'])
 def getRoutes(request): 
 
     # this send to JsonResponse param
@@ -39,5 +42,5 @@ def getRoutes(request):
     ]
 
     # rendering routes to browser (up there)
-    return JsonResponse(routes, safe=False)
+    return Response(routes)
 
