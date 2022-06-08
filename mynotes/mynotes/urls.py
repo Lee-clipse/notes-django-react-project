@@ -4,6 +4,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # get every url from api/urls.py
+    # 'localhost:8000' -> mynotes/url.py -> api/urls.py
     path('', include('api.urls')) 
 ]
