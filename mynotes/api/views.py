@@ -56,7 +56,8 @@ def getRoutes(request):
 @api_view(['GET'])
 def getNotes(request):
     # this python obj list need Serializer
-    notes = Note.objects.all()
+    # my models.py have 'update' attribute and order by that
+    notes = Note.objects.all().order_by('-update')
     serializer = NoteSerializer(notes, many=True)
     return Response(serializer.data)
 
@@ -81,3 +82,10 @@ def updateNote(request, pk):
         serializer.save()
     
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def deleteNote(request, pk):
+    note = Note.objects.get(id=pk)
+    note.delete()
+    return Response('Note was deleted!')
