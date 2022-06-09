@@ -19,11 +19,26 @@ const NotePage = () => {
 
 
     let getNote = async () => {
+        if (noteId.id === 'new') return 
+
         // it's different from 'Link to' syntax of ListItem.js
         let response = await fetch('/api/notes/' + noteId.id)
         let data = await response.json()
         setNote(data)
     }
+
+
+    let createNote = async () => {
+        fetch('/api/notes/create/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        }) 
+        navigate('/')
+    }
+    
 
 
     // put updated 'note' to fetched url (django admin page)
@@ -35,7 +50,6 @@ const NotePage = () => {
             },
             body: JSON.stringify(note)
         }) 
-        navigate('/')
     }
 
 
@@ -51,6 +65,23 @@ const NotePage = () => {
     }
 
 
+    let handleSubmit = () => {
+        // note is exist and contents have nothing
+        if (noteId.id !== 'new' && note.body === '') {
+            deleteNote()
+        } 
+        // note is exist and contents have something
+        else if (noteId.id !== 'new') {
+            updateNote()
+        }
+        // user clicked AddButton and contents have something
+        else if (noteId.id === 'new' && note !== null) {
+            createNote()
+        }
+        navigate('/')
+    }
+
+
     // '?' means if note is null, do not anything
     // '/' means go to back
     // If user update title or contents of note, they called setNote() and udpate it
@@ -59,9 +90,13 @@ const NotePage = () => {
         <div className="note">
             <div className="note-header">
                 <h3>
-                    <ArrowLeft onClick={updateNote} />
+                    <ArrowLeft onClick={handleSubmit} />
                 </h3>
-                <button onClick={deleteNote}>Delete</button>
+                {noteId.id !== 'new' ? (
+                    <button onClick={deleteNote}>Delete</button>
+                ) : (
+                    <button onClick={handleSubmit}>Done</button>
+                )}
             </div>
             <textarea 
                 onChange={(e) => { setNote({ ...note, 'body':e.target.value }) }} 
