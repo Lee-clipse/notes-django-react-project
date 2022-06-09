@@ -9,18 +9,20 @@ import NotesListPage from './pages/NotesListPage'
 import NotePage from './pages/NotePage'
 
 function App() {
-	return (
-		<Router>
-			<div className="App">
-				<Header/>
-				
-				<Routes>
-					<Route path="/" element={<NotesListPage/>}></Route>
-					<Route path="note/:id" element={<NotePage/>}></Route>
-				</Routes>
-			</div>
-		</Router>
-	);
+    return (
+      <Router>
+        <div className="container">
+          <div className="app">
+          <Header/>
+          
+          <Routes>
+            <Route path="/" element={<NotesListPage/>}></Route>
+            <Route path="note/:id" element={<NotePage/>}></Route>
+          </Routes>
+          </div>
+        </div>
+      </Router>
+    );
 }
 
 export default App;

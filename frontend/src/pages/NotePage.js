@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
 const NotePage = () => {
 
@@ -20,10 +21,18 @@ const NotePage = () => {
         setNote(data)
     }
 
-    // ? means if note is null, do not anything
+    // '?' means if note is null, do not anything
+    // '/' means go to back
     return (
-        <div>
-            <p>{note?.body}</p>
+        <div className="note">
+            <div className="note-header">
+                <h3>
+                    <Link to="/">
+                        <ArrowLeft/>
+                    </Link>
+                </h3>
+            </div>
+            <textarea defaultValue={note?.body}></textarea>
         </div>
     )
 }
