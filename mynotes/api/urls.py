@@ -5,5 +5,7 @@ urlpatterns = [
     # mynotes/urls.py -> api/urls.py -> api/views.py
     path('', views.getRoutes, name="my_routes"), 
     path('notes/', views.getNotes, name="notes"),
-    path('notes/<str:pk>/', views.getNote, name="notes"),
+    path('notes/<str:pk>/update/', views.updateNote, name="update-note"),
+    
+    path('notes/<str:pk>/', views.getNote, name="note"),
 ]
