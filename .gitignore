@@ -4,4 +4,7 @@ __pycache__/
 
 *.sqlite3
 
+build/
+node_modules/
+
 env/
