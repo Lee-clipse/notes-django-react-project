@@ -17,12 +17,14 @@ const NotePage = () => {
         getNote()
     }, [noteId])
 
+
     let getNote = async () => {
         // it's different from 'Link to' syntax of ListItem.js
         let response = await fetch('/api/notes/' + noteId.id)
         let data = await response.json()
         setNote(data)
     }
+
 
     // put updated 'note' to fetched url (django admin page)
     let updateNote = async () => {
@@ -32,13 +34,22 @@ const NotePage = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(note)
-        })
-    }
-
-    let handleSubmit = () => {
-        updateNote()
+        }) 
         navigate('/')
     }
+
+
+    // delete single note and return 
+    let deleteNote = async () => {
+        fetch('/api/notes/' + noteId.id + '/delete/', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        navigate('/')
+    }
+
 
     // '?' means if note is null, do not anything
     // '/' means go to back
@@ -48,8 +59,9 @@ const NotePage = () => {
         <div className="note">
             <div className="note-header">
                 <h3>
-                    <ArrowLeft onClick={handleSubmit} />
+                    <ArrowLeft onClick={updateNote} />
                 </h3>
+                <button onClick={deleteNote}>Delete</button>
             </div>
             <textarea 
                 onChange={(e) => { setNote({ ...note, 'body':e.target.value }) }} 
