@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
 const NotePage = () => {
@@ -7,17 +7,15 @@ const NotePage = () => {
     let noteId = useParams()
     let [note, setNote] = useState(null)
 
-    // when 'noteId' changes, this called
+    // this called when 'noteId' changes
     useEffect(() => {
         getNote()
     }, [noteId])
 
-
-    // in v6 update, history.push() -> useNavigate()
-    const navigate = useNavigate()
-
-
+    
+    // get single note
     let getNote = async () => {
+        // user clicked AddButton just before
         if (noteId.id === 'new') return 
 
         // it's different from 'Link to' syntax of ListItem.js
@@ -25,7 +23,7 @@ const NotePage = () => {
             headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
-               }
+            }
         })
         let data = await response.json()
         setNote(data)
@@ -43,7 +41,6 @@ const NotePage = () => {
     }
     
 
-    // put updated 'note' to fetched url (django admin page)
     let updateNote = async () => {
         fetch('/api/notes/' + noteId.id + '/', {
             method: "PUT",
@@ -51,11 +48,10 @@ const NotePage = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(note)
-        }) 
+        })
     }
 
 
-    // delete single note and return 
     let deleteNote = async () => {
         fetch('/api/notes/' + noteId.id + '/', {
             method: 'DELETE',
@@ -63,32 +59,33 @@ const NotePage = () => {
                 'Content-Type': 'application/json'
             }
         })
-        navigate('/')
+        window.location.replace("/")
     }
 
 
     let handleSubmit = () => {
-        // note is exist and contents have nothing
+        // user clears all text and clicks '<'
         if (noteId.id !== 'new' && note.body === '') {
             deleteNote()
         } 
-        // note is exist and contents have something
+        // user want to save something
         else if (noteId.id !== 'new') {
             updateNote()
         }
-        // user clicked AddButton and contents have something
+        // user clicked AddButton just before
         else if (noteId.id === 'new') {
+            // contents have something
             if (note) {
                 if (note.body !== '') {
                     createNote()
                 }
             }
-        } 
-        navigate('/')
+        }
+        window.location.replace("/")
     }
 
 
-    // If user update title or contents of note, they called setNote() and update it
+    // If user update contents of note, setNote() called and update it
     return (
         <div className="note">
             <div className="note-header">

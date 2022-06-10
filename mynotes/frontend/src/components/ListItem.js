@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-// get update timestamp and change to easy looking
+// get updated timestamp and change for easy looking
 let getTime = (note) => {
     return new Date(note.update).toLocaleDateString()
 }
@@ -19,7 +19,7 @@ let getTitle = (note) => {
 }
 
 
-// view part of contents at NoteListPage
+// view of contents at NoteListPage
 // if content is too long, then slice to ' ...'
 let getContent = (note) => {
     let title = getTitle(note)

@@ -10,7 +10,7 @@ from .utils import *
 /notes/<id>   DELETE    deleteNote()
 '''
 
-# "/notes/"
+# /notes/
 @api_view(['GET', 'POST'])
 def getNotes(request):
     if request.method == 'GET':
@@ -20,7 +20,7 @@ def getNotes(request):
         return createNote(request)
 
 
-# "/notes/<id>"
+# /notes/<id>
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def getNote(request, pk):
     if request.method == 'GET':

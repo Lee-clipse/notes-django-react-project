@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap');
 
 :root {
-  --color-main: #e78111;
-  --color-text: #383a3f;
-  --color-dark: #1f2124;
-  --color-gray: #677;
-  --color-bg: #f3f6f9;
-  --color-light: #acb4bd;
-  --color-lighter: #f9f9f9;
-  --color-white: #fff;
-  --color-border:#e0e3e6;
+  --color-main: #b50302;
+  --color-text: #373737;
+  --color-dark: #373737;
+  --color-gray: #373737;
+  --color-bg: #faf8f2;
+  --color-hover: #e6e6e5;
+  --color-light: #373737;
+  --color-lighter: #fcfaf4;
+  --color-white: #fcfaf4;
+  --color-border:#373737;
 }
 
 /* BASE STYLES */
@@ -54,8 +55,9 @@ a {
   max-width: 480px;
   height: 88vh;
   margin: 0 auto;
+  border: 0px solid var(--color-border);
   background-color: var(--color-white);
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 10px 1px 5px rgba(0, 0, 0, 0.05);
   position: relative;
 }
 
@@ -129,14 +131,14 @@ a {
 }
 
 .notes-list-item {
-  border-bottom: 1px solid  var(--color-border);
+  border-bottom: 0px solid  var(--color-border);
   margin-bottom: 12px;
   padding: 8px 16px;
   transition: all 0.2s ease-in-out;
 }
 
 .notes-list-item:hover {
-  background-color: var(--color-bg);
+  background-color: var(--color-hover);
   cursor: pointer;
 }
 

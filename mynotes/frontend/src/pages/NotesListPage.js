@@ -5,26 +5,21 @@ import AddButton from '../components/AddButton'
 
 const NotesListPage = () => {
 
-	// notes = [], when setNotes() called, can access to 'notes'
 	let [notes, setNotes] = useState([])
 
-	// If we render page first, this called once
+	// this called once when the page is first rendered 
 	useEffect(() => {
 		getNotes()
 	}, [])
 
+	// get note list
 	let getNotes = async () => {
-		// fetch that data of url (Django)
 		let response = await fetch('/api/notes/')
-		
-		// wait till json parser done
 		let data = await response.json()
-		console.log('DATA: ', data)
-
-		// notes = data
 		setNotes(data)
 	}
 
+	// view of note list page
 	// AddButton -> /notes/new/
     return (
         <div className="notes">
