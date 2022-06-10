@@ -27,7 +27,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-bh))$5e=n1ecsl
 # for heroku deploy
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'jinjae-note.herokuapp.com',
+    '127.0.0.1'
+]
 
 
 # Application definition
