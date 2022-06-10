@@ -12,7 +12,7 @@ from .serializers import NoteSerializer
 '''
 
 
-# "/notes GET"
+# /notes GET
 def getNotesList(request):
     notes = Note.objects.all().order_by('-update')
     serializer = NoteSerializer(notes, many=True)
