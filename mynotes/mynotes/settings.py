@@ -20,13 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bh))$5e=n1ecslf#(n__7w-g)22(nz_q+&b1996%wv^asv$9*3'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# for heroku deploy
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-bh))$5e=n1ecslf#(n__7w-g)22(nz_q+&b1996%wv^asv$9*3')
 
-ALLOWED_HOSTS = []
+# for heroku deploy
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,3 +137,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

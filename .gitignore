@@ -1,10 +1,11 @@
 # Byte-compiled / optimized / DLL files
+*.log
+*.pot
+*.pyc
 __pycache__/
-*.py[cod]
-
-*.sqlite3
-
-build/
 node_modules/
-
 env/
+build/
+local_settings.py
+db.sqlite3
+media
