@@ -2,8 +2,10 @@
 *.log
 *.pot
 *.pyc
+env/
 __pycache__/
 node_modules/
 local_settings.py
 db.sqlite3
 media
+build/
