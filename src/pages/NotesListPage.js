@@ -14,7 +14,11 @@ const NotesListPage = () => {
 
 	// get note list
 	let getNotes = async () => {
-		let response = await fetch('/api/notes/')
+		let response = await fetch('/api/notes/',{
+			headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+        }})
 		let data = await response.json()
 		setNotes(data)
 	}

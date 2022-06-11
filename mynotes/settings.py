@@ -9,12 +9,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-bh))$5e=n1ecslf#(n__7w-g)22(nz_q+&b1996%wv^asv$9*3')
 
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-
+'''
 ALLOWED_HOSTS = [
     'jinjae-note.herokuapp.com',
     '127.0.0.1'
 ]
-
+'''
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -55,7 +56,10 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # what page looking for /app/~~~/index.html
-        'DIRS': [os.path.join(BASE_DIR, 'public')],
+        'DIRS': [
+            #os.path.join(BASE_DIR, 'public'), 
+            os.path.join(BASE_DIR, 'build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,10 +123,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # what heroku looking for
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
 

@@ -17,7 +17,7 @@ const NotePage = () => {
     let getNote = async () => {
         // user clicked AddButton just before
         if (noteId.id === 'new') return 
-
+        
         // it's different from 'Link to' syntax of ListItem.js
         let response = await fetch('/api/notes/' + noteId.id + '/', {
             headers : { 
@@ -25,6 +25,7 @@ const NotePage = () => {
                 'Accept': 'application/json'
             }
         })
+        
         let data = await response.json()
         setNote(data)
     }
@@ -34,7 +35,8 @@ const NotePage = () => {
         fetch('/api/notes/', {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(note)
         }) 
@@ -46,6 +48,7 @@ const NotePage = () => {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(note)
         })
@@ -56,7 +59,8 @@ const NotePage = () => {
         fetch('/api/notes/' + noteId.id + '/', {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         })
         window.location.replace("/")
