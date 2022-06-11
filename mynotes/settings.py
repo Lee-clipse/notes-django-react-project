@@ -57,8 +57,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # what page looking for /app/~~~/index.html
         'DIRS': [
-            #os.path.join(BASE_DIR, 'public'), 
-            os.path.join(BASE_DIR, 'build')
+            #os.path.join(BASE_DIR, 'build'), 
+            os.path.join(BASE_DIR, 'public')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,10 +123,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # what heroku looking for
+# build only: django - index.html / heroku - 500 error
+# build + static: django - ok / heroku - ??
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
 
