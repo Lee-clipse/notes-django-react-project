@@ -1,4 +1,41 @@
-# Simple note program
+<div align="center">
+  
+# :ledger: Simple note application
+  
+</div>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/79911816/173209702-d136bca5-2bd8-4c31-9f6c-ea94e2db57e3.gif">
+</p>
+
+---
+
+<div align="center">
+  
+  # :computer: Stack :computer:
+  
+  <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black">
+  <img src="https://img.shields.io/badge/Heroku-430098?style=flat-square&logo=Heroku&logoColor=white">
+  <br/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black">
+  
+</div>
+
+---
+
+# Description
+
+It's an application that can create, update, and delete notes.
+
+Displays the title, content, and timestamp of a single note in the form of a list.
+
+It is also sorted in a updated order.
+
+---
 
 ## 문제 상황 1
 
