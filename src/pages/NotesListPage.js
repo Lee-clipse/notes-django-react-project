@@ -12,13 +12,16 @@ const NotesListPage = () => {
 		getNotes()
 	}, [])
 
-	// get note list
+	// error occurs here
+	// about json parsing or wrong server response
 	let getNotes = async () => {
 		let response = await fetch('/api/notes/',{
 			headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
         }})
+		let val = 32
+		console.log(val)
 		let data = await response.json()
 		setNotes(data)
 	}

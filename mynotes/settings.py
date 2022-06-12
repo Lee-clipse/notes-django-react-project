@@ -56,9 +56,12 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # what page looking for /app/~~~/index.html
+        # public 먼저: heroku만 ok
+        # build 먼저:  django만 ok
+        # 복수선택 안되는것 같다
         'DIRS': [
-            #os.path.join(BASE_DIR, 'build'), 
-            os.path.join(BASE_DIR, 'public')
+            os.path.join(BASE_DIR, 'build'), 
+            #os.path.join(BASE_DIR, 'public')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,10 +126,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # what heroku looking for
-# build only: django - index.html / heroku - 500 error
-# build + static: django - ok / heroku - ??
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]
+# delete this                         
+# build:            django - index.html     heroku - 500 error
+# build + static:   django - ok             heroku - ??
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build', 'static'),
+    #os.path.join(BASE_DIR, 'public')
+]
 
+# gather all those static files to 'staticfiles'
+# maybe '.html' is not in that group
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
